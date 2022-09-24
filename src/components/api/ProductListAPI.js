@@ -68,14 +68,12 @@ function ProductListAPI() {
                                 <tr>
                                     <td>
                                         {index +1}
-                                        {/* {item._id} */}
                                     </td>
                                     <td>
                                         {item.name}
                                     </td>
                                     <td>
-                                        {item.price}
-                                        {/* {item.title} */}
+                                        {item.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})}
                                     </td>
                                     <td>
                                         <Link to={`/edit`}>

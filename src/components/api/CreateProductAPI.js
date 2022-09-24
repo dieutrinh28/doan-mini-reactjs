@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import '../style/ProductList.css';
+import { useNavigate } from "react-router-dom";
 
 const CreateProductAPI = (props) => {
     const[products, setProducts] = useState([]);
     const[name, setName] = useState('');
     const[price, setPrice] = useState('');
+
+    const history = useNavigate();
 
     
 
@@ -35,6 +38,7 @@ const CreateProductAPI = (props) => {
             setName('')
             setPrice('')
         }
+        history("/list")
     }
 
     

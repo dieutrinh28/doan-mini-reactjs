@@ -9,21 +9,23 @@ function ProductListAPI() {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        const getProducts = async () => {
-            try {
-                const res = await axios.get(
-                    //'https://jsonplaceholder.typicode.com/todos'
-                    'http://127.0.0.1:8000/api/products'
-                )
-                console.log(res.data)
-                setProducts(res.data)
-            }
-            catch (error) {
-                console.log(error.message)
-            }
-        }
         getProducts()
     }, [])
+
+    const getProducts = async () => {
+        try {
+            const res = await axios.get(
+                //'https://jsonplaceholder.typicode.com/todos'
+                'http://127.0.0.1:8000/api/products'
+            )
+            console.log(res.data)
+            setProducts(res.data)
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
+    
 
     const deleteProduct = async (id) => {
         try {
@@ -31,13 +33,14 @@ function ProductListAPI() {
                 //`https://jsonplaceholder.typicode.com/todos/${id}`
                 `http://127.0.0.1:8000/api/products/${id}`
             )
+            const item = products.find(product => product._id === id)
             const newProducts = products.filter(product => product._id !== id)
             setProducts(newProducts)
+            alert(`Xóa sản phẩm ${item.name}`)
         }
         catch (error)
         {
             console.log(error.message)
-        
         }
     }
 

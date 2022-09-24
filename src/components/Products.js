@@ -1,7 +1,7 @@
 const Products = [
     {
         id: "1",
-        Name: "Bánh",
+        Name: "bánh",
         Price: 30
     },
     {

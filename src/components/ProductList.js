@@ -3,14 +3,13 @@ import Products from './Products';
 import { Button, Table } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Home() {
+function ProductList() {
     let history = useNavigate();
 
     const handleEdit = (id, name, price) => {
         localStorage.setItem('Name', name)
         localStorage.setItem('Price', price)
         localStorage.setItem('Id', id)
-
     }
     
     const handleDelete = (id) => {
@@ -19,7 +18,7 @@ function Home() {
         }).indexOf(id);
 
         Products.splice(index, 1);
-
+        
        history('/');
     }
 
@@ -80,4 +79,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default ProductList;

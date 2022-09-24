@@ -79,10 +79,10 @@ function ProductListAPI() {
                                     </td>
                                     <td class="action">
                                         <Link to={`/edit`}>
-                                        <button class="btn__edit">Chỉnh sửa</button>
+                                        <button class="btn btn__edit">Chỉnh sửa</button>
                                         </Link>
                                         &nbsp;
-                                        <button class="btn__delete" onClick={deleteProduct.bind(this, item._id)}>Xóa</button>
+                                        <button class="btn btn__delete" onClick={deleteProduct.bind(this, item._id)}>Xóa</button>
                                     </td>
                                 </tr>
                             )
@@ -95,7 +95,7 @@ function ProductListAPI() {
             <br></br>
             <div class="add">
                 <Link to="/create">
-                    <button class="btn__add" size="lg">Tạo sản phẩm</button>
+                    <button class="btn btn__add" size="lg">Tạo sản phẩm</button>
                 </Link>
             </div>
         </div>

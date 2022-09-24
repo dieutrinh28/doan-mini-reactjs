@@ -1,3 +1,6 @@
+body{
+    margin: 0;
+}
 h2{
     text-align: center;
 }
@@ -12,7 +15,7 @@ td{
     padding: 10px;
     background: #F3E0DC;
 }
-button{
+.btn{
     padding: 10px 15px;
     border: none;
     border-radius: 50px;
@@ -73,4 +76,51 @@ input{
 }
 .btn__save:hover{
     background: #3f5820;
+}
+/* login */
+.content-login{
+    height: 300px;
+    width: 400px;
+    margin: auto;
+    padding: 20px 40px;
+    background: #F3E0DC;
+    text-align: center;
+    border-radius: 5px;
+}
+h3{
+    margin-bottom: 30px;
+}
+label{
+    margin-right: 5px;
+}
+p{
+    margin: 0 0 10px 0;
+    color: red;
+}
+.text_pass{
+    margin-right: 35px;
+}
+
+/* homepage */
+.homepage{
+    background: rgb(214, 214, 215);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.btn__homepage{
+    min-width: 150px;
+    padding: 15px 20px;
+    margin: 20px;
+    background: rgb(214, 214, 214);
+    border: none;
+    border-radius: 25px;
+    color: rgb(50, 207, 207);
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: -7px -7px 20px 0 rgba(255, 255, 255, 0.7), 7px 7px 20px 0 rgba(0, 0, 0, 0.2);
+}
+.btn__homepage:hover{
+    box-shadow: inset -7px -7px 20px 0 rgba(255, 255, 255, 0.7), inset 7px 7px 20px 0 rgba(0, 0, 0, 0.2);
 }

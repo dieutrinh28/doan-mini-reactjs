@@ -25,9 +25,10 @@ function Login() {
         }
     });
     return (
-        <div className="App-login" style={{margin:"10rem"}}>
+        <div class="content-login">
+            <h3>ĐĂNG NHẬP</h3>
             <Form className="infoform" onClick={form.handleSubmit}>
-                <div>
+                <div class="content_login">
                     <label>Số điện thoại</label>
                     <input
                         type="text"
@@ -42,7 +43,7 @@ function Login() {
                     )}
                 </div>
                 <div>
-                    <label>Mật khẩu</label>
+                    <label class="text_pass">Mật khẩu</label>
                     <input
                         type="text"
                         id="password"
@@ -55,7 +56,7 @@ function Login() {
                         <p className="">*{form.errors.password}</p>
                     )}
                 </div>
-                <button type="submit">Đăng nhập</button>
+                <button class="btn btn__add" type="submit">Đăng nhập</button>
             </Form>
         </div>
         );

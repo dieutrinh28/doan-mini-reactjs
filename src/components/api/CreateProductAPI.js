@@ -57,7 +57,7 @@ const CreateProductAPI = (props) => {
                     onChange={(e) => setPrice(e.target.value)} 
                 />
                 <br></br>
-                <button class="btn__save" type="submit" onClick={(e) => addProduct(e)}>Lưu</button>
+                <button class="btn btn__save" type="submit" onClick={(e) => addProduct(e)}>Lưu</button>
             </form>
         </div>
     ) 

@@ -58,7 +58,7 @@ td{
 .content{
     height: 250px;
     width: 400px;
-    margin: auto;
+    margin: 80px auto;
     padding: 20px 40px;
     background: #F3E0DC;
     text-align: center;
@@ -128,7 +128,7 @@ p{
 /* update */
 .content__update{
     width: 700px;
-    margin: 0 auto;
+    margin: 80px auto;
     text-align: center;
     background: #F3E0DC;
 }

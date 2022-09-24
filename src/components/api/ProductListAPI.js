@@ -7,6 +7,9 @@ import '../style/ProductList.css';
 function ProductListAPI() {
 
     const [products, setProducts] = useState([])
+    const[name, setName] = useState('');
+    const[price, setPrice] = useState('');
+    const[id, setId] = useState('');
 
     useEffect(() => {
         getProducts()
@@ -18,27 +21,30 @@ function ProductListAPI() {
                 //'https://jsonplaceholder.typicode.com/todos'
                 'http://127.0.0.1:8000/api/products'
             )
-            console.log(res.data)
-            setProducts(res.data)
+            //console.log(res.data)
+            setProducts(res.data)        
         }
         catch (error) {
             console.log(error.message)
         }
     }
-    
 
     const deleteProduct = async (id) => {
         try {
             const item = products.find(product => product._id === id)
+            // alert(item.name)
             const newProducts = products.filter(product => product._id !== id)
             var result = window.confirm(`Xóa sản phẩm ${item.name}?`);
-            if(result == true){
+            if(result === true)
+            {
                 setProducts(newProducts)
                 await axios.delete(
                     //`https://jsonplaceholder.typicode.com/todos/${id}`
                     `http://127.0.0.1:8000/api/products/${id}`
                 )
-            }else{
+            }
+            else
+            {
                 return false
             }
         }
@@ -48,7 +54,56 @@ function ProductListAPI() {
         }
     }
 
+    const getProductDetail = async (id) => {
+        const item = products.find(product => product._id === id)  
+        try {
+            const res = await axios.get(
+                //'https://jsonplaceholder.typicode.com/todos'
+                `http://127.0.0.1:8000/api/products/${id}`
+            )
+            //console.log(res.data)
+            setProducts(item.data)   
+            setName(item.data.name)
+            setPrice(item.data.price)
+            //setId(item.data._id)     
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    function selectProduct(id) {
+        const item = products.find(product => product._id === id)  
+        alert(item.name)
+        setName(item.name)
+        setPrice(item.price)
+    }
+    
+    const updateProduct = async (id) => {
+        try {
+            const item = products.find(product => product._id === id)   
+            alert(item.name)       
+            await axios.put(
+                //`https://jsonplaceholder.typicode.com/todos/${id}`
+                `http://127.0.0.1:8000/api/products/${id}`, 
+                {
+                    
+                }
+            )
+            setName((e) => e.target.value)
+            setPrice((e) => e.target.value)
+        }
+        catch (error)
+        {
+            console.log(error.message)
+        }
+       getProductDetail()
+    }
+
+    
+
     return(
+        <>
         <div class="table">
             <h2>DANH SÁCH SẢN PHẨM</h2>
             <Table striped bordered hover size="sm">
@@ -61,7 +116,7 @@ function ProductListAPI() {
                             Tên sản phẩm
                         </th>
                         <th>
-                            Giá
+                            Giá tiền
                         </th>
                         <th>
                             Thao tác
@@ -85,9 +140,7 @@ function ProductListAPI() {
                                         {item.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})}
                                     </td>
                                     <td class="action">
-                                        <Link to={`/edit`}>
-                                        <button class="btn btn__edit">Chỉnh sửa</button>
-                                        </Link>
+                                        <button class="btn btn__edit" onClick={() => selectProduct(item._id)}>Chỉnh sửa</button>                                      
                                         &nbsp;
                                         <button class="btn btn__delete" onClick={deleteProduct.bind(this, item._id)}>Xóa</button>
                                     </td>
@@ -106,6 +159,28 @@ function ProductListAPI() {
                 </Link>
             </div>
         </div>
+        <div class="content__update">
+            <h3 class="text">CHỈNH SỬA SẢN PHẨM</h3>
+            <form>
+            <input class="item"
+                type="text" 
+                placeholder="Tên sản phẩm" 
+                required 
+                value = {name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <input class="item"
+                type="text" 
+                placeholder="Giá sản phẩm" 
+                required 
+                value = {price}
+                onChange={(e) => setPrice(e.target.value)} 
+            />
+            <button class="btn btn__edit" type="submit" onClick={updateProduct(id)}>Lưu</button>
+            {/* <button class="btn btn__delete" type="submit" onClick={clearPutOutput}>Xóa</button> */}
+        </form>
+        </div>
+        </>
     )
 }
 export default ProductListAPI;

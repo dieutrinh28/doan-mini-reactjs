@@ -31,18 +31,19 @@ function EditProduct() {
     },[])
 
     return(
-        <div>
-        <Form className="d-grid gap-2" style={{margin: "15rem"}}>
-            <Form.Group className="mb-3" controlId="formName">
-                <Form.Control type="text" placeholder="Nhập tên sản phẩm" value={name} required onChange={(e) => setName(e.target.value)}>
-                </Form.Control>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formPrice">
-                <Form.Control type="text" placeholder="Nhập giá sản phẩm" value={price} required onChange={(e) => setPrice(e.target.value)}>                    
-                </Form.Control>
-            </Form.Group>
-            <Button type="submit" onClick={(e) => handleSubmit(e)}>Update</Button>
-        </Form>
+        <div class="content">
+            <h3>CHỈNH SỬA SẢN PHẨM</h3>
+            <Form>
+                <Form.Group controlId="formName">
+                    <Form.Control type="text" placeholder="Nhập tên sản phẩm" value={name} required onChange={(e) => setName(e.target.value)}>
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="formPrice">
+                    <Form.Control type="text" placeholder="Nhập giá sản phẩm" value={price} required onChange={(e) => setPrice(e.target.value)}>                    
+                    </Form.Control>
+                </Form.Group>
+                <button class="btn__save" type="submit" onClick={(e) => handleSubmit(e)}>Update</button>
+            </Form>
         </div>
     )
 

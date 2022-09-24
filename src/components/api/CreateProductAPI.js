@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import axios from 'axios';
+import '../style/ProductList.css';
 
 const CreateProductAPI = (props) => {
     const[products, setProducts] = useState([]);
@@ -39,22 +39,27 @@ const CreateProductAPI = (props) => {
 
     
 
-    return <div>
-        <form className="d-grid gap-2" style={{margin: "15rem"}}>
-            <input 
-                type="text" 
-                placeholder="Nhập tên sản phẩm" 
-                required 
-                onChange={(e) => setName(e.target.value)}
-            />
-            <input
-                type="text" 
-                placeholder="Nhập giá sản phẩm" 
-                required 
-                onChange={(e) => setPrice(e.target.value)} 
-            />
-            <Button type="submit" onClick={(e) => addProduct(e)}>Lưu</Button>
-        </form>
-    </div>
+    return(
+        <div class="content">
+            <h3>TẠO SẢN PHẨM</h3>
+            <form>
+                <input 
+                    type="text" 
+                    placeholder="Nhập tên sản phẩm" 
+                    required 
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <br></br>
+                <input
+                    type="text" 
+                    placeholder="Nhập giá sản phẩm" 
+                    required 
+                    onChange={(e) => setPrice(e.target.value)} 
+                />
+                <br></br>
+                <button class="btn__save" type="submit" onClick={(e) => addProduct(e)}>Lưu</button>
+            </form>
+        </div>
+    ) 
 }
 export default CreateProductAPI;

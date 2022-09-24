@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../style/ProductList.css';
 
 function ProductListAPI() {
 
@@ -41,21 +42,22 @@ function ProductListAPI() {
     }
 
     return(
-        <div style={{margin:"10rem"}}>
+        <div class="table">
+            <h2>DANH SÁCH SẢN PHẨM</h2>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>
-                            Số thứ tự
+                            STT
                         </th>
                         <th>
-                            Name
+                            Tên sản phẩm
                         </th>
                         <th>
-                            Price
+                            Giá
                         </th>
                         <th>
-                            Action
+                            Thao tác
                         </th>
                     </tr>
                 </thead>
@@ -66,7 +68,7 @@ function ProductListAPI() {
                         products.map((item, index) => {
                             return(
                                 <tr>
-                                    <td>
+                                    <td class="number">
                                         {index +1}
                                         {/* {item._id} */}
                                     </td>
@@ -77,12 +79,12 @@ function ProductListAPI() {
                                         {item.price}
                                         {/* {item.title} */}
                                     </td>
-                                    <td>
+                                    <td class="action">
                                         <Link to={`/edit`}>
-                                        <Button >Chỉnh sửa</Button>
+                                        <button class="btn__edit">Chỉnh sửa</button>
                                         </Link>
                                         &nbsp;
-                                        <Button onClick={deleteProduct.bind(this, item._id)}>Xóa</Button>
+                                        <button class="btn__delete" onClick={deleteProduct.bind(this, item._id)}>Xóa</button>
                                     </td>
                                 </tr>
                             )
@@ -92,11 +94,12 @@ function ProductListAPI() {
                     }
                 </tbody>
             </Table>
-            <br>
-            </br>
-            <Link className='d-grid gap-2' to="/create">
-                <Button size="lg">Tạo sản phẩm</Button>
-            </Link>
+            <br></br>
+            <div class="add">
+                <Link to="/create">
+                    <button class="btn__add" size="lg">Tạo sản phẩm</button>
+                </Link>
+            </div>
         </div>
     )
 }

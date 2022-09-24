@@ -29,14 +29,18 @@ function ProductListAPI() {
 
     const deleteProduct = async (id) => {
         try {
-            await axios.delete(
-                //`https://jsonplaceholder.typicode.com/todos/${id}`
-                `http://127.0.0.1:8000/api/products/${id}`
-            )
             const item = products.find(product => product._id === id)
             const newProducts = products.filter(product => product._id !== id)
-            setProducts(newProducts)
-            alert(`Xóa sản phẩm ${item.name}`)
+            var result = window.confirm(`Xóa sản phẩm ${item.name}?`);
+            if(result == true){
+                setProducts(newProducts)
+                await axios.delete(
+                    //`https://jsonplaceholder.typicode.com/todos/${id}`
+                    `http://127.0.0.1:8000/api/products/${id}`
+                )
+            }else{
+                return false
+            }
         }
         catch (error)
         {

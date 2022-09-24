@@ -50,29 +50,29 @@ function UpdateProductAPI() {
     }
   
     return(
-        <div>
-            <h3>CHỈNH SỬA SẢN PHẨM</h3>
-        {products.map((item) => {
-            return(
-                <form className="d-grid gap-2" style={{margin: "15rem"}}>
-                    <input 
-                        type="text" 
-                        placeholder="Tên sản phẩm" 
-                        required 
-                        value = {item.name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <input
-                        type="text" 
-                        placeholder="Giá sản phẩm" 
-                        required 
-                        value = {item.price}
-                        onChange={(e) => setPrice(e.target.value)} 
-                    />
-                    <button type="submit" onClick={updateProduct(item._id)}>Lưu</button>
-                    <button type="submit" onClick={clearPutOutput}>Clear</button>
-                </form>
-            )})}   
+        <div class="content__update">
+            <h3 class="text">CHỈNH SỬA SẢN PHẨM</h3>
+            {products.map((item) => {
+                return(
+                    <form>
+                        <input class="item"
+                            type="text" 
+                            placeholder="Tên sản phẩm" 
+                            required 
+                            value = {item.name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                        <input class="item"
+                            type="text" 
+                            placeholder="Giá sản phẩm" 
+                            required 
+                            value = {item.price}
+                            onChange={(e) => setPrice(e.target.value)} 
+                        />
+                        <button class="btn btn__edit" type="submit" onClick={updateProduct(item._id)}>Lưu</button>
+                        <button class="btn btn__delete" type="submit" onClick={clearPutOutput}>Xóa</button>
+                    </form>
+                )})}   
         </div>
     )
 }

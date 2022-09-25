@@ -9,97 +9,63 @@ function ProductListAPI() {
     const [products, setProducts] = useState([])
     const[name, setName] = useState('');
     const[price, setPrice] = useState('');
-    const[id, setId] = useState('');
+    const[id, setId] = useState(null);
 
     useEffect(() => {
         getProducts()
     }, [])
 
-    const getProducts = async () => {
-        try {
-            const res = await axios.get(
-                //'https://jsonplaceholder.typicode.com/todos'
-                'http://127.0.0.1:8000/api/products'
-            )
-            //console.log(res.data)
-            setProducts(res.data)        
-        }
-        catch (error) {
-            console.log(error.message)
-        }
+    const getProducts = async () => {      
+        const res = await axios.get(
+            //'https://jsonplaceholder.typicode.com/todos'
+            'http://127.0.0.1:8000/api/products'
+        )
+        //console.log(res.data)
+        setProducts(res.data)               
     }
 
     const deleteProduct = async (id) => {
-        try {
-            const item = products.find(product => product._id === id)
-            // alert(item.name)
-            const newProducts = products.filter(product => product._id !== id)
-            var result = window.confirm(`Xóa sản phẩm ${item.name}?`);
-            if(result === true)
-            {
-                setProducts(newProducts)
-                await axios.delete(
-                    //`https://jsonplaceholder.typicode.com/todos/${id}`
-                    `http://127.0.0.1:8000/api/products/${id}`
-                )
-            }
-            else
-            {
-                return false
-            }
-        }
-        catch (error)
+        const item = products.find(product => product._id === id)
+        // alert(item.name)
+        const newProducts = products.filter(product => product._id !== id)
+        var result = window.confirm(`Xóa sản phẩm ${item.name}?`);
+        if(result === true)
         {
-            console.log(error.message)
-        }
-    }
-
-    const getProductDetail = async (id) => {
-        const item = products.find(product => product._id === id)  
-        try {
-            const res = await axios.get(
-                //'https://jsonplaceholder.typicode.com/todos'
+            setProducts(newProducts)
+            await axios.delete(
+                //`https://jsonplaceholder.typicode.com/todos/${id}`
                 `http://127.0.0.1:8000/api/products/${id}`
             )
-            //console.log(res.data)
-            setProducts(item.data)   
-            setName(item.data.name)
-            setPrice(item.data.price)
-            //setId(item.data._id)     
         }
-        catch (error) {
-            console.log(error.message)
+        else
+        {
+            return false
         }
     }
 
     function selectProduct(id) {
         const item = products.find(product => product._id === id)  
-        alert(item.name)
+        //alert(item._id)
+        setId(item._id)
         setName(item.name)
         setPrice(item.price)
     }
     
-    const updateProduct = async (id) => {
-        try {
-            const item = products.find(product => product._id === id)   
-            alert(item.name)       
-            await axios.put(
-                //`https://jsonplaceholder.typicode.com/todos/${id}`
-                `http://127.0.0.1:8000/api/products/${id}`, 
-                {
-                    
-                }
-            )
-            setName((e) => e.target.value)
-            setPrice((e) => e.target.value)
-        }
-        catch (error)
-        {
-            console.log(error.message)
-        }
-       getProductDetail()
+    const updateProduct = async (id, name, price) => {            
+        const res = await axios.put(
+            `http://127.0.0.1:8000/api/products/${id}` , 
+            {
+                name, price
+            }     
+        )
+        console.log(res.data)  
+     
     }
 
+    const clearPutOutput = () => {
+        setName("");
+        setPrice("");
+    }
     
 
     return(
@@ -176,8 +142,8 @@ function ProductListAPI() {
                 value = {price}
                 onChange={(e) => setPrice(e.target.value)} 
             />
-            <button class="btn btn__edit" type="submit" onClick={updateProduct(id)}>Lưu</button>
-            {/* <button class="btn btn__delete" type="submit" onClick={clearPutOutput}>Xóa</button> */}
+            <button class="btn btn__edit" type="submit" onClick={updateProduct(id, name, price)}>Lưu</button>
+            <button class="btn btn__delete" type="submit" onClick={clearPutOutput}>Reset</button>
         </form>
         </div>
         </>

@@ -16,12 +16,20 @@ function ProductListAPI() {
     }, [])
 
     const getProducts = async () => {      
+        try {
+
+        
         const res = await axios.get(
             //'https://jsonplaceholder.typicode.com/todos'
             'http://127.0.0.1:8000/api/products'
         )
         //console.log(res.data)
-        setProducts(res.data)               
+        setProducts(res.data)      
+        }
+        catch (error) 
+        {
+            console.log(error.message)
+        }         
     }
 
     const deleteProduct = async (id) => {
@@ -66,6 +74,9 @@ function ProductListAPI() {
         setName("");
         setPrice("");
     }
+    var x = 1000;
+    x = x.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+    console.log(x);
     
 
     return(
